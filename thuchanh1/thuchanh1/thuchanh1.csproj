@@ -187,9 +187,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Book\ListBooḳ.cshtml" />
-    <Content Include="Views\Book\ListBooḳModel.cshtml" />
-    <Content Include="Views\Book\EditBooḳ.cshtml" />
+    <Content Include="Views\Book\ListBook.cshtml" />
+    <Content Include="Views\Book\ListBookModel.cshtml" />
+    <Content Include="Views\Book\EditBook.cshtml" />
     <Content Include="Views\Book\CreateBook.cshtml" />
   </ItemGroup>
   <ItemGroup>

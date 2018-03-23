@@ -14,7 +14,7 @@ namespace thuchanh1.Controllers
             return "Welcome BookStore! " + university;
         }
 
-        public ActionResult ListBooḳ()
+        public ActionResult ListBook()
         {
             var books = new List<string>();
             books.Add("ASP.NET MVC");
@@ -25,7 +25,7 @@ namespace thuchanh1.Controllers
 
         }
 
-        public ActionResult ListBooḳModel()
+        public ActionResult ListBookModel()
         {
 
             var books = new List<Book>();
@@ -36,7 +36,7 @@ namespace thuchanh1.Controllers
 
         }
 
-        public ActionResult EditBooḳ(int id)
+        public ActionResult EditBook(int id)
         {
             var books = new List<Book>();
             books.Add(new Book(1, "ASP.NET MVC", "Nguyễn Văn A", "/Content/Images/book1.png"));
