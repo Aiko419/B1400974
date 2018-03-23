@@ -1,0 +1,47 @@
+﻿@model thuchanh1.Models.Book
+
+@{
+    ViewBag.Title = "EditBooḳ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditBooḳ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ID)
+    <table>
+        <tr>
+            <td>Title:</td>
+            <td>
+                @Html.TextBoxFor(model => model.TITLE, new { @class = "form-control", placeholder = "Title" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Author:</td>
+            <td>
+                @Html.TextBoxFor(model => model.AUTHOR, new { @class = "form-control", placeholder = "Title" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Image Cover:</td>
+            <td>
+                @Html.TextBoxFor(model => model.IMAGE_COVER, new { @class = "form-control", placeholder = "Title" })
+            </td>
+        </tr>
+
+        <tr style="text-align:center; padding-top:20px">
+            <td colspan="2">
+                <input type="submit" value="Save Book" class="btn btn-danger" />
+            </td>
+        </tr>
+
+    </table>
+}
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

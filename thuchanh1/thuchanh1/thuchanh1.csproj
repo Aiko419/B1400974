@@ -189,6 +189,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Book\ListBooḳ.cshtml" />
     <Content Include="Views\Book\ListBooḳModel.cshtml" />
+    <Content Include="Views\Book\EditBooḳ.cshtml" />
+    <Content Include="Views\Book\CreateBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
