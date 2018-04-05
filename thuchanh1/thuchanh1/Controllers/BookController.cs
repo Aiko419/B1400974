@@ -61,7 +61,7 @@ namespace thuchanh1.Controllers
         //Post: Book/EditBook/Id
         [HttpPost, ActionName("EditBook")] //Dữ liệu được post từ Client
         [ValidateAntiForgeryToken] //Security help
-        public ActionResult EditBooḳSave(int id, string Title, string Author, string Image_cover)
+        public ActionResult EditBookSave(int id, string Title, string Author, string Image_cover)
         {
             //Dữ liệu sách ban đầu
             var books = new List<Book>();
