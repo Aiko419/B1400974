@@ -19,16 +19,17 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" ng-model="password" required class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password"  ng-model="password" required class="form-control" id="exampleInputPassword1" placeholder="Password">
                 <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
                     <span ng-show="myForm.password.$error.required">Password is required.</span>
                 </span>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password1" ng-model="password1" required class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password1"  ng-model="password1" required class="form-control" id="exampleInputPassword1" placeholder="Password">
                 <span style="color:red" ng-show="myForm.password1.$dirty && myForm.password1.$invalid">
-                    <span ng-show="myForm.password1.$error.required">Password is required.</span>
+                    <span ng-show="myForm.password1.$error.required ">Password is required.</span> 
+                    <span ng-show="myForm.password1.$dirty && myForm.password1.$error.unique">Password is not match.</span>
                 </span>
             </div>
             <div class="form-check">
@@ -39,7 +40,7 @@
         </form>
     </div>
 </div>
-
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope) {
@@ -58,6 +59,8 @@
                 $scope.error = false;
             }
         };
+
     });
+
 </script>
 
