@@ -20,6 +20,7 @@ namespace Model1.EntityFramework
         {
             modelBuilder.Entity<Account>().Property(e => e.UserName).IsUnicode(false);
             modelBuilder.Entity<Account>().Property(e => e.Password).IsUnicode(false);
+           
         }
     }
 }

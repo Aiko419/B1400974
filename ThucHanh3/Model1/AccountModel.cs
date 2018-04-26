@@ -1,19 +1,18 @@
-﻿using Model1.EntityFramework;
-using System;
+﻿
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Model1.EntityFramework;
+using PagedList;
 
 namespace Model1
 {
         public class AccountModel
         {
-            private ThucHanh3DbContext context = null;
+            private Model11 context = null;
             public AccountModel()
             {
-                context = new ThucHanh3DbContext();
+                context = new Model11();
             }
             public bool Login(string UserName, string Password)
             {
@@ -25,7 +24,17 @@ namespace Model1
                 var res = context.Database.SqlQuery<bool>("Sp_Account_Login @UserName, @Password", sqlParas).SingleOrDefault();
                 return res;
             }
+            public IEnumerable<Book> ListAllPage(int page, int rowLimit)
+            {
+                return context.Books.OrderByDescending(x => x.Title).ToPagedList(page, rowLimit);
+            }
 
-        }
+
+
+
+
+
 
     }
+
+}

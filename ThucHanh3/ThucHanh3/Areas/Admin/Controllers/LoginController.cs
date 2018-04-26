@@ -30,7 +30,7 @@ namespace ThucHanh3.Areas.Admin.Controllers
                 //Nếu thành công chúng ta cần tạo session
                 //SessionHelper.SetSession(new UserSession(model.UserName));
                 FormsAuthentication.SetAuthCookie(model.UserName, model.Remenberme);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("getListBook", "Book");
             }
             else
             {
