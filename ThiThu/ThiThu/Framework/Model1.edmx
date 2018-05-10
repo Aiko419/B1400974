@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="THITHUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dbo_khoa">
+          <Key>
+            <PropertyRef Name="MaKhoa" />
+          </Key>
+          <Property Name="MaKhoa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenKhoa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgayTL" Type="date" />
+        </EntityType>
+        <EntityType Name="dbo_monhoc">
+          <Key>
+            <PropertyRef Name="MaMH" />
+          </Key>
+          <Property Name="MaMH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaKhoa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenMH" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SoTC" Type="int" />
+        </EntityType>
+        <EntityType Name="dbo_nganh">
+          <Key>
+            <PropertyRef Name="MaNganh" />
+          </Key>
+          <Property Name="MaNganh" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaKhoa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenNganh" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoNamDT" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_MonHoc_Khoa">
+          <End Role="dbo_khoa" Type="Self.dbo_khoa" Multiplicity="1" />
+          <End Role="dbo_monhoc" Type="Self.dbo_monhoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dbo_khoa">
+              <PropertyRef Name="MaKhoa" />
+            </Principal>
+            <Dependent Role="dbo_monhoc">
+              <PropertyRef Name="MaKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_Khoa">
+          <End Role="dbo_khoa" Type="Self.dbo_khoa" Multiplicity="1" />
+          <End Role="dbo_nganh" Type="Self.dbo_nganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dbo_khoa">
+              <PropertyRef Name="MaKhoa" />
+            </Principal>
+            <Dependent Role="dbo_nganh">
+              <PropertyRef Name="MaKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="THITHUModelStoreContainer">
+          <EntitySet Name="dbo_khoa" EntityType="Self.dbo_khoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dbo_monhoc" EntityType="Self.dbo_monhoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dbo_nganh" EntityType="Self.dbo_nganh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MonHoc_Khoa" Association="Self.FK_MonHoc_Khoa">
+            <End Role="dbo_khoa" EntitySet="dbo_khoa" />
+            <End Role="dbo_monhoc" EntitySet="dbo_monhoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_Khoa" Association="Self.FK_Nganh_Khoa">
+            <End Role="dbo_khoa" EntitySet="dbo_khoa" />
+            <End Role="dbo_nganh" EntitySet="dbo_nganh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="THITHUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dbo_khoa">
+          <Key>
+            <PropertyRef Name="MaKhoa" />
+          </Key>
+          <Property Name="MaKhoa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgayTL" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="dbo_monhoc" Relationship="Self.FK_MonHoc_Khoa" FromRole="dbo_khoa" ToRole="dbo_monhoc" />
+          <NavigationProperty Name="dbo_nganh" Relationship="Self.FK_Nganh_Khoa" FromRole="dbo_khoa" ToRole="dbo_nganh" />
+        </EntityType>
+        <EntityType Name="dbo_monhoc">
+          <Key>
+            <PropertyRef Name="MaMH" />
+          </Key>
+          <Property Name="MaMH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaKhoa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenMH" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoTC" Type="Int32" />
+          <NavigationProperty Name="dbo_khoa" Relationship="Self.FK_MonHoc_Khoa" FromRole="dbo_monhoc" ToRole="dbo_khoa" />
+        </EntityType>
+        <EntityType Name="dbo_nganh">
+          <Key>
+            <PropertyRef Name="MaNganh" />
+          </Key>
+          <Property Name="MaNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaKhoa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoNamDT" Type="Int32" />
+          <NavigationProperty Name="dbo_khoa" Relationship="Self.FK_Nganh_Khoa" FromRole="dbo_nganh" ToRole="dbo_khoa" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_MonHoc_Khoa">
+          <End Role="dbo_khoa" Type="Self.dbo_khoa" Multiplicity="1" />
+          <End Role="dbo_monhoc" Type="Self.dbo_monhoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dbo_khoa">
+              <PropertyRef Name="MaKhoa" />
+            </Principal>
+            <Dependent Role="dbo_monhoc">
+              <PropertyRef Name="MaKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_Khoa">
+          <End Role="dbo_khoa" Type="Self.dbo_khoa" Multiplicity="1" />
+          <End Role="dbo_nganh" Type="Self.dbo_nganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dbo_khoa">
+              <PropertyRef Name="MaKhoa" />
+            </Principal>
+            <Dependent Role="dbo_nganh">
+              <PropertyRef Name="MaKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebMVCDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dbo_khoa" EntityType="Self.dbo_khoa" />
+          <EntitySet Name="dbo_monhoc" EntityType="Self.dbo_monhoc" />
+          <EntitySet Name="dbo_nganh" EntityType="Self.dbo_nganh" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_MonHoc_Khoa" Association="Self.FK_MonHoc_Khoa">
+            <End Role="dbo_khoa" EntitySet="dbo_khoa" />
+            <End Role="dbo_monhoc" EntitySet="dbo_monhoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_Khoa" Association="Self.FK_Nganh_Khoa">
+            <End Role="dbo_khoa" EntitySet="dbo_khoa" />
+            <End Role="dbo_nganh" EntitySet="dbo_nganh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="THITHUModelStoreContainer" CdmEntityContainer="WebMVCDbContext">
+          <EntitySetMapping Name="dbo_khoa">
+            <EntityTypeMapping TypeName="THITHUModel.dbo_khoa">
+              <MappingFragment StoreEntitySet="dbo_khoa">
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+                <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+                <ScalarProperty Name="NgayTL" ColumnName="NgayTL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dbo_monhoc">
+            <EntityTypeMapping TypeName="THITHUModel.dbo_monhoc">
+              <MappingFragment StoreEntitySet="dbo_monhoc">
+                <ScalarProperty Name="MaMH" ColumnName="MaMH" />
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+                <ScalarProperty Name="TenMH" ColumnName="TenMH" />
+                <ScalarProperty Name="SoTC" ColumnName="SoTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dbo_nganh">
+            <EntityTypeMapping TypeName="THITHUModel.dbo_nganh">
+              <MappingFragment StoreEntitySet="dbo_nganh">
+                <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+                <ScalarProperty Name="TenNganh" ColumnName="TenNganh" />
+                <ScalarProperty Name="SoNamDT" ColumnName="SoNamDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="THITHUModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

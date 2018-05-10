@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ThiThu.Framework.dbo_nganh>
+
+@{
+    ViewBag.Title = "ds_nganh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ds_nganh</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaNganh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNganh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoNamDT)
+        </th>
+        <th></th>
+    </tr>
+    @{ 
+        int count = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ 
+                    count++;
+                }
+                @count
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNganh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNganh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoNamDT)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Sua_nganh", new { id = item.MaNganh }) |
+                @Html.ActionLink("Delete", "Xoa_nganh", new { id = item.MaNganh })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "nganh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    function showInfo(idKhoa) {
+        $.ajax({
+            type: 'POST', url: '/Nganh/showInfo', data: { id: idKhoa }, success: function (data) {
+                $("#txtInfo").html(data);
+            }
+        });
+    }
+</script>
+<h2>Ngành</h2>
+@Html.DropDownList("MaKhoa", null, htmlAttributes: new { @class = "form-control", @onchange = "showInfo(document.getElementById('MaKhoa').value)" })
+
+<div id="txtInfo">
+</div>
+
