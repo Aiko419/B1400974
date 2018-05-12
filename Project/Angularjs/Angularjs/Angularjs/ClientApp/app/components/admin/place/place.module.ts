@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { PlaceComponent } from './place.component';
 
 
+
 @NgModule({
     imports: [
         BrowserModule,
