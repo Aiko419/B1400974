@@ -5,27 +5,41 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <h1>Test</h1>
-        <div class="btn-group" role="group" aria-label="...">
-            <input type="text" class="form-control" aria-label="..." [(ngModel)]="ng_name"><br />
-            <input type="text" class="form-control" aria-label="..." [(ngModel)]="ng_complete"><br />
-            <button type="button" class="btn btn-primary">Add</button>
+        <div *ngIf="isShow">
+            <form (ngSubmit)="onSubmit(formadd);" #formadd="ngForm" class="btn-group" role="group">
+                <input type="text" class="form-control" ngModel #txtName="ngModel" name="name" placeholder="Name"><br />
+                <input type="text" class="form-control" ngModel #txtIsComplete="ngModel" name="isComplete" placeholder="isComplete"><br />
+                <button class="btn btn-primary">Add</button>
+            </form>
         </div>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Complete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let data of httpdata">
-                        <td>{{data.id}}</td>
-                        <td>{{data.name}}</td>
-                        <td>{{data.isComplete}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div *ngIf="isShowEdit">
+            <form (ngSubmit)="edit(formedit);" #formedit="ngForm" class="btn-group" role="group">
+                <input type="text" class="form-control" ngModel #txtName="ngModel" name="name" placeholder="Name"><br />
+                <input type="text" class="form-control" ngModel #txtIsComplete="ngModel" name="isComplete" placeholder="isComplete"><br />
+                <button class="btn btn-primary">Update</button>
+            </form>
+        </div>
+        <button (click)="isShow = true" class="btn btn-primary" *ngIf="!isShow">Add</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Complete</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of httpdata">
+                    <td>{{data.id}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.isComplete}}</td>
+                    <td><button class="btn btn-warning" (click)="delete(data.id);">Delete</button></td>
+                    <td><button class="btn btn-warning" (click)="getItem(data.id);">Update</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="col-md-1"></div>
     </div>
