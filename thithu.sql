@@ -1,5 +1,4 @@
 
-
 CREATE TABLE [dbo].[dbo_nganh]
 (
 	[MaNganh] [varchar](10)NOT NULL PRIMARY KEY,
